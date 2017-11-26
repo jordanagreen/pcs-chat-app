@@ -1,5 +1,8 @@
 package com.example.pcschatapp;
 
+import org.whispersystems.curve25519.Curve25519;
+import org.whispersystems.curve25519.Curve25519KeyPair;
+
 import java.util.ArrayDeque;
 import java.util.Queue;
 
@@ -14,6 +17,8 @@ public class User implements IUser {
     private Queue<Curve25519KeyPair> mOneTimePreKeys;
 
     User(){
+        mIdentityKeyPair = Curve25519.getInstance(Curve25519.BEST).generateKeyPair();
+        mSignedPreKey = Curve25519.getInstance(Curve25519.BEST).generateKeyPair();
         mOneTimePreKeys = new ArrayDeque<>();
     }
 
